@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.1'
+gem 'rails', '4.2.2'
 # Use postgresql as the database for Active Record
 gem 'pg'
 # Use SCSS for stylesheets
@@ -31,13 +31,15 @@ gem 'realtime'
 
 gem 'react-rails', '~> 1.0'
 
-gem 'materialize-sass'
+gem 'twitter-bootstrap-rails'
 
 gem 'therubyracer'
 
 gem 'puma'
 
 gem 'underscore-rails'
+
+gem 'guard'
 
 gem 'acts_as_votable'
 # Use ActiveModel has_secure_password
