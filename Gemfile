@@ -39,7 +39,7 @@ gem 'puma'
 
 gem 'underscore-rails'
 
-gem 'guard'
+gem 'firebase'
 
 gem 'acts_as_votable'
 # Use ActiveModel has_secure_password
