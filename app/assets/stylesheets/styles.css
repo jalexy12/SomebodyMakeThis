@@ -55,6 +55,11 @@ img.grayscale {
    color:#777777;
 }
 
+.home_creative_pic{
+  width: 75px;
+
+}
+
 .navbar a {
   color:#fff;
 }
@@ -78,6 +83,10 @@ img.grayscale {
   padding-top:4%;
 }
 
+.project_body{
+  margin-top: 5%;
+}
+
 .header h1 {
   font-size:110px;
   -webkit-text-stroke: 1px rgba(0,0,0,0.1);
@@ -93,8 +102,14 @@ img.grayscale {
   font-size:25px;
 }
 
+.project_home{
+  margin-top: 7px;
+  border-style: ridge;
+  border-size: 1px;
+  border-color: #D8ECF2;
+}
 .header {
-  height: 80%;
+  height: 75%;
   background: #11cc45 url('http://www.bootply.com/assets/example/pt_squares_lg.png') repeat center center fixed;
 }
 
@@ -121,6 +136,11 @@ img.grayscale {
 .featurette-item {
   margin-bottom: 15px;
 }
+
+.panel-story{
+  height: 100%;
+}
+
 
 .featurette-item > i {
   border: 3px solid #ffffff;
@@ -162,6 +182,7 @@ img.grayscale {
 .call-to-action .btn {
   margin: 10px;
 }
+
 
 footer {
   padding: 100px 0;
