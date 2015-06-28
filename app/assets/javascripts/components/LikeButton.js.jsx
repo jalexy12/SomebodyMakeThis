@@ -1,5 +1,9 @@
 class LikeButton extends React.Component{
 
+	_updateLiked(){
+		// likePromise = new Promise(function(resolve, reject))
+	}
+
 	_like(){
 		this.setState({
 			liked: true
@@ -20,13 +24,6 @@ class LikeButton extends React.Component{
 		}
 	}
 
-	// _bind(...methods){
-	// 	methods.forEach( (method) => )
-	// }
-
-
-
-
 	render(){
 		var button;
 
@@ -38,7 +35,6 @@ class LikeButton extends React.Component{
 			button = <button onClick={this._like} className="btn btn-default">Like This</button>
 		}
 
-		console.log(this.state.liked)
 		return(
 			<span>{button}</span>
 		);
