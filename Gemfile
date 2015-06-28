@@ -42,6 +42,9 @@ gem 'underscore-rails'
 gem 'firebase'
 
 gem 'acts_as_votable'
+
+gem "font-awesome-rails"
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 gem 'kaminari'

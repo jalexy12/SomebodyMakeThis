@@ -6,7 +6,7 @@ ProjectIdeaTable = React.createClass({
 			projectIdeas: []
 		}
 	},
-
+	
 	getIdeas: function(){
 		$.ajax({
 			url: '/projectideas?page=' + Number(this.state.currentPage),
