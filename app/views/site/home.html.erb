@@ -22,6 +22,8 @@
    </div>
 </div>
  -->
+
+  
 <div class="blurb bright">
   
   <div class="row">
@@ -39,7 +41,7 @@
           Quisque mauris augue, molestie tincidunt condimentum vitae, gravida a libero. Aenean sit amet felis 
           dolor, in sagittis nisi. Sed ac orci quis tortor imperdiet venenatis. Duis elementum auctor accumsan. 
           Aliquam in felis sit amet augue.<hr>
-          <button class="btn btn-lg btn-primary btn-block">Sign Up</button> 
+          <%= button_to 'Sign Up', new_creative_registration_path, class: "btn btn-lg btn-primary btn-block", method: "get" %>
           </div>
          </div>
  	</div>
@@ -50,27 +52,14 @@
           Quisque mauris augue, molestie tincidunt condimentum vitae, gravida a libero. Aenean sit amet felis 
           dolor, in sagittis nisi. Sed ac orci quis tortor imperdiet venenatis. Duis elementum auctor accumsan. 
           Aliquam in felis sit amet augue.<hr>
-          <button class="btn btn-lg btn-primary btn-block">Sign up</button> 
-           
+            <%= button_to 'Sign Up', new_developer_registration_path, class: "btn btn-lg btn-primary btn-block", method: "get" %>
           </div>
          </div>
  	</div>
   </div>
 </div>
   <!-- <div class="container"> -->
-     <div class="row project_body">
-        <div class="col-sm-12">
-             <div class="panel panel-default panel-story">
-             <div class="panel-heading text-center"><h2>Top Project Ideas</h2></div>
-             <div class="panel-body text-center">
-             	<%= react_component 'ProjectIdeaTable' %>
-              </div>
-             </div>
-     	</div>
-       </div>
-    </div>
-
-
+ 
 <footer>
   <div class="container">
     <div class="row">

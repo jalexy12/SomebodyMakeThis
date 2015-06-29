@@ -1,7 +1,20 @@
 class LikeButton extends React.Component{
 
 	_updateLiked(){
-		// likePromise = new Promise(function(resolve, reject))
+		var uri = this.props.url
+		var id = this.props.id
+
+		$.ajax({
+				url: uri,
+				type: 'post',
+				data: {id: id},
+				success: function (data) {
+					this.setState({likeCount: data})
+				}.bind(this),
+				error: function(xhr, status, err){
+					console.error(this.props.url, status, err.toString());
+				}.bind(this)
+			});
 	}
 
 	_like(){
@@ -18,8 +31,11 @@ class LikeButton extends React.Component{
 		super();
 		this._like = this._like.bind(this)
 		this._unlike = this._unlike.bind(this)
+		this._updateLiked = this._updateLiked.bind(this)
+
 		this.state = {
 			liked: null, 
+			likeCount: null,
 			likeUrl: ''
 		}
 	}
@@ -32,11 +48,16 @@ class LikeButton extends React.Component{
 		}else if (this.state.liked === false){
 			button = <i onClick={this._like} className="fa fa-thumbs-down"></i>
 		}else{
-			button = <button onClick={this._like} className="btn btn-default">Like This</button>
+			button = <button onClick={this._like} className="btn btn-default">Like This {this.state.likeCount}</button>
 		}
 
 		return(
-			<span>{button}</span>
+			<span>
+			  <button onClick={this._updateLiked} className="btn btn-default">Make a promise</button>
+			  {button}
+			</span>
 		);
 	}
 }
+
+

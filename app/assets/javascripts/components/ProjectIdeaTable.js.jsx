@@ -35,7 +35,18 @@ ProjectIdeaTable = React.createClass({
 	render: function(){
 
 		var ideas = this.state.projectIdeas.map(function(idea){
-			return(<ProjectIdeaComponent key={idea.id} name={idea.name} id={idea.id} likes={idea.likes} creative={idea.creative} description={idea.description} />)
+			project = idea[0]
+			likes = idea[1]
+			
+			return(<ProjectIdeaComponent 
+					  key={idea.id} 
+					  likes={idea.votes_for}
+					  name={idea.name} 
+					  id={idea.id} 
+					  likes={idea.likes} 
+					  creative={idea.creative} 
+					  description={idea.description} />
+			)
 		});
 
 
@@ -48,5 +59,6 @@ ProjectIdeaTable = React.createClass({
 			)
 	}
 })
+
 
 
