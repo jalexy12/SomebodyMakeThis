@@ -35,9 +35,15 @@ class LikeButton extends React.Component{
 
 		this.state = {
 			liked: null, 
-			likeCount: null,
-			likeUrl: ''
+			likeUrl: '',
+			likeCount: null
 		}
+	}
+
+	componentWillMount() {
+		this.setState({
+			likeCount: this.props.likes
+		})
 	}
 
 	render(){
@@ -48,7 +54,7 @@ class LikeButton extends React.Component{
 		}else if (this.state.liked === false){
 			button = <i onClick={this._like} className="fa fa-thumbs-down"></i>
 		}else{
-			button = <button onClick={this._like} className="btn btn-default">Like This {this.state.likeCount}</button>
+			button = <button onClick={this._like} className="btn btn-default">Like This</button>
 		}
 
 		return(

@@ -1,13 +1,12 @@
 var ProjectIdeaComponent = React.createClass({
 	render: function (){
-		console.log(this.props.likes)
 		return( 
 			<li className="row project_home">
 			  <div className="col-sm-4 home_name">
 			    <h3>
 			        {this.props.name} 
 			      <small>
-			        {this.props.likes} <LikeButton url={"/updatelike"} id={this.props.id}/>
+			        <LikeButton url={"/updatelike"} likes={this.props.likes} id={this.props.id}/>
 			      </small>
 			    </h3>
 			  </div>

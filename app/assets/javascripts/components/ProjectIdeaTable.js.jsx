@@ -9,9 +9,10 @@ ProjectIdeaTable = React.createClass({
 	
 	getIdeas: function(){
 		$.ajax({
-			url: '/projectideas?page=' + Number(this.state.currentPage),
+			url: '/projectideas',
+			type: "get",
+			data: {page: this.state.currentPage},
 			success: function(data){
-				console.log(data)
 				this.setState({projectIdeas: data.projects, pageMax: data.page_count});
 			}.bind(this),
 			error: function(xhr, status, err){
@@ -33,19 +34,15 @@ ProjectIdeaTable = React.createClass({
 	},
 
 	render: function(){
-
 		var ideas = this.state.projectIdeas.map(function(idea){
 			project = idea[0]
-			likes = idea[1]
-			
 			return(<ProjectIdeaComponent 
-					  key={idea.id} 
-					  likes={idea.votes_for}
-					  name={idea.name} 
-					  id={idea.id} 
-					  likes={idea.likes} 
-					  creative={idea.creative} 
-					  description={idea.description} />
+					  key={project.id} 
+					  name={project.name} 
+					  id={project.id} 
+					  likes={idea[1]} 
+					  creative={project.creative} 
+					  description={project.description} />
 			)
 		});
 

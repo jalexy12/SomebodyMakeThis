@@ -45,6 +45,7 @@ gem 'acts_as_votable'
 
 gem "font-awesome-rails"
 
+gem 'wisper'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 gem 'kaminari'
