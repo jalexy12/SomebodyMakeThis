@@ -16,6 +16,8 @@
 //= require underscore
 //= require react
 //= require react_ujs
+// require lib/firehose_config
+//= require firehose
 //= require components
 //= require_tree .
 

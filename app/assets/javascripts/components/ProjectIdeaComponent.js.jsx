@@ -4,9 +4,9 @@ var ProjectIdeaComponent = React.createClass({
 			<li className="row project_home">
 			  <div className="col-sm-4 home_name">
 			    <h3>
-			        {this.props.name} 
+			        {this.props.name}&nbsp;{this.props.id}&nbsp;
 			      <small>
-			        <LikeButton url={"/updatelike"} likes={this.props.likes} id={this.props.id}/>
+			        <LikeButton url={"/updatelike"} liked={this.props.liked} likes={this.props.likes} id={this.props.id}/>
 			      </small>
 			    </h3>
 			  </div>

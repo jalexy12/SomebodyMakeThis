@@ -35,8 +35,6 @@ gem 'twitter-bootstrap-rails'
 
 gem 'therubyracer'
 
-gem 'puma'
-
 gem 'underscore-rails'
 
 gem 'firebase'
@@ -46,11 +44,13 @@ gem 'acts_as_votable'
 gem "font-awesome-rails"
 
 gem 'wisper'
+
+gem 'firehose'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 gem 'kaminari'
 # Use Unicorn as the app server
-# gem 'unicorn'
+gem 'thin'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

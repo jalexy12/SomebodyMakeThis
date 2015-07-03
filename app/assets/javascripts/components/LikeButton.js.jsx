@@ -42,28 +42,25 @@ class LikeButton extends React.Component{
 
 	componentWillMount() {
 		this.setState({
-			likeCount: this.props.likes
+			likeCount: this.props.likes,
+			liked: this.props.liked
 		})
+		// this._updateLiked();	
 	}
 
 	render(){
 		var button;
 
 		if (this.state.liked === true){ 
-			button = <i onClick={this._unlike} className="fa fa-thumbs-up"></i>
-		}else if (this.state.liked === false){
-			button = <i onClick={this._like} className="fa fa-thumbs-down"></i>
-		}else{
-			button = <button onClick={this._like} className="btn btn-default">Like This</button>
+			button = <button className="btn btn-default" onClick={this._unlike}>You liked this</button>
+		}else {
+			button = <button className="btn btn-primary"><i onClick={this._like} className="fa fa-thumbs-up"></i>Like This</button>
 		}
 
 		return(
 			<span>
-			  <button onClick={this._updateLiked} className="btn btn-default">Make a promise</button>
 			  {button}
 			</span>
 		);
 	}
 }
-
-
