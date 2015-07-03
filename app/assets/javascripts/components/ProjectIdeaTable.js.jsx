@@ -2,6 +2,7 @@ class ProjectIdeaTable extends React.Component{
 
 	constructor(){
 		super();
+
 		this.getIdeas = this.getIdeas.bind(this)
 		this.newPage = this.nextPage.bind(this)
 
@@ -10,6 +11,24 @@ class ProjectIdeaTable extends React.Component{
 			pageMax: null,
 			projectIdeas: []
 		}
+
+		var that = this;
+
+		new Firehose.Consumer({
+		  message: function(msg){
+		    that.updateState(msg)
+		  },
+		  connected: function(){
+		    console.log("Great Scotts!! We're connected!");
+		  },
+		  disconnected: function(){
+		    console.log("Well shucks, we're not connected anymore");
+		  },
+		  error: function(){
+		    console.log("Well then, something went horribly wrong.");
+		  },
+		  uri: '//localhost:7474/projects'
+		}).connect();
 		
 	}
 	
@@ -45,44 +64,21 @@ class ProjectIdeaTable extends React.Component{
 	}
 
 	updateState(updatedProject){
-		console.log(called)
-		newIdeas = this.state.projectideas.map(function(project){
-			console.log(updatedProject, project)
+		newIdeas = this.state.projectIdeas.map(function(project){
 			if (updatedProject.id === project.id){
-				console.log(project)
+				return updatedProject
 			}else{
 				return project
 			}
+			console.log(newIdeas)
 		})
+
 		this.setState({projectideas: newIdeas})
-	}
-
-
-
-	subscribe(){
-		var that = this
-
-		new Firehose.Consumer({
-		  message: function(msg){
-		    that.updateState(msg)
-		  },
-		  connected: function(){
-		    console.log("Great Scotts!! We're connected!");
-		  },
-		  disconnected: function(){
-		    console.log("Well shucks, we're not connected anymore");
-		  },
-		  error: function(){
-		    console.log("Well then, something went horribly wrong.");
-		  },
-		  uri: '//localhost:7474/projects'
-		}).connect();
 	}
 
 
 	componentDidMount(){	
 		this.getIdeas(1);
-		this.subscribe();
 	}
 
 	render(){

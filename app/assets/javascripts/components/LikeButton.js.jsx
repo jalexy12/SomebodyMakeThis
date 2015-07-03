@@ -3,13 +3,14 @@ class LikeButton extends React.Component{
 	_updateLiked(){
 		var uri = this.props.url
 		var id = this.props.id
+		var that = this
 
 		$.ajax({
 				url: uri,
 				type: 'post',
 				data: {id: id},
 				success: function (data) {
-					this.setState({likeCount: data})
+					 // console.log("Success")
 				}.bind(this),
 				error: function(xhr, status, err){
 					console.error(this.props.url, status, err.toString());
@@ -17,15 +18,23 @@ class LikeButton extends React.Component{
 			});
 	}
 
+	componentWillReceiveProps(nextProps) {
+		console.log(nextProps)
+		props = nextProps.likes != this.props.likes ? nextProps.likes : this.props.likes
+		this.setState({
+			likeCount: props 
+		})
+	}
+
 	_like(){
 		this.setState({
-			liked: true
+			liked: true,
 		})	
 		this._updateLiked()
 	}
 	_unlike(){
 		this.setState({
-			liked: false
+			liked: false,
 		})
 		this._updateLiked()
 	}
@@ -34,7 +43,6 @@ class LikeButton extends React.Component{
 		this._like = this._like.bind(this)
 		this._unlike = this._unlike.bind(this)
 		this._updateLiked = this._updateLiked.bind(this)
-
 		this.state = {
 			liked: null, 
 			likeUrl: '',
@@ -44,20 +52,17 @@ class LikeButton extends React.Component{
 
 	componentWillMount() {
 		this.setState({
-			likeCount: this.props.likes,
 			liked: this.props.liked
-		})	
+		})
 	}
 
 	render(){
 		var button;
-
 		if (this.state.liked === true){ 
-			button = <button className="btn btn-default" onClick={this._unlike}>You liked this {this.state.likeCount}</button>
+			button = <button className="btn btn-default" onClick={this._unlike}>You liked this {this.props.likes}</button>
 		}else {
-			button = <button className="btn btn-primary" onClick={this._like}><i className="fa fa-thumbs-up"></i>Like This {this.state.likeCount}</button>
+			button = <button className="btn btn-primary" onClick={this._like}><i className="fa fa-thumbs-up"></i>Like This {this.props.likes}</button>
 		}
-
 		return(
 		  <div>
 			<span>
@@ -70,3 +75,4 @@ class LikeButton extends React.Component{
 		);
 	}
 }
+
