@@ -44,12 +44,27 @@ class ProjectIdeaTable extends React.Component{
 			}
 	}
 
+	updateState(updatedProject){
+		console.log(called)
+		newIdeas = this.state.projectideas.map(function(project){
+			console.log(updatedProject, project)
+			if (updatedProject.id === project.id){
+				console.log(project)
+			}else{
+				return project
+			}
+		})
+		this.setState({projectideas: newIdeas})
+	}
+
 
 
 	subscribe(){
+		var that = this
+
 		new Firehose.Consumer({
 		  message: function(msg){
-		    console.log(msg);
+		    that.updateState(msg)
 		  },
 		  connected: function(){
 		    console.log("Great Scotts!! We're connected!");
@@ -60,7 +75,7 @@ class ProjectIdeaTable extends React.Component{
 		  error: function(){
 		    console.log("Well then, something went horribly wrong.");
 		  },
-		  uri: '//localhost:7474/projects/'
+		  uri: '//localhost:7474/projects'
 		}).connect();
 	}
 
@@ -84,12 +99,11 @@ class ProjectIdeaTable extends React.Component{
 			)
 		});
 
-
 		return (
 			<ul className="row list-unstyled">
 				{ideas}
-				<button onClick={this.prevPage.bind(this)}>Back</button>
-				<button onClick={this.nextPage.bind(this, this.state.currentPage + 1)}>Next</button>
+				<button className="btn btn-default" onClick={this.prevPage.bind(this)}>Back</button>
+				<button className="btn btn-default" onClick={this.nextPage.bind(this, this.state.currentPage + 1)}>Next</button>
 			</ul>
 
 			)
