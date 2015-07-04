@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  post 'pusher/auth'
+
   resources :projectideas
 
   post '/updatelike' => "projectideas#updateliked"

@@ -10,6 +10,7 @@ Rails.application.configure do
     harmony: true,
   }
 
+  config.middleware.delete Rack::Lock
   # Do not eager load code on boot.
   config.eager_load = false
 

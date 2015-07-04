@@ -27,8 +27,6 @@ gem 'devise'
 
 gem 'redis'
 
-gem 'realtime'
-
 gem 'react-rails', '~> 1.0'
 
 gem 'twitter-bootstrap-rails'
@@ -43,14 +41,13 @@ gem 'acts_as_votable'
 
 gem "font-awesome-rails"
 
-gem 'wisper'
-
-gem 'firehose'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 gem 'kaminari'
 # Use Unicorn as the app server
-gem 'thin'
+gem 'puma'
+
+gem 'pusher'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

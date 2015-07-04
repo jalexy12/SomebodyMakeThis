@@ -10,7 +10,7 @@ class LikeButton extends React.Component{
 				type: 'post',
 				data: {id: id},
 				success: function (data) {
-					 // console.log("Success")
+					console.log("Success")
 				}.bind(this),
 				error: function(xhr, status, err){
 					console.error(this.props.url, status, err.toString());
@@ -19,11 +19,11 @@ class LikeButton extends React.Component{
 	}
 
 	componentWillReceiveProps(nextProps) {
-		console.log(nextProps)
-		props = nextProps.likes != this.props.likes ? nextProps.likes : this.props.likes
-		this.setState({
-			likeCount: props 
-		})
+		if (nextProps.likes !== this.state.likeCount){
+			this.setState({
+				likeCount: nextProps.likes
+			})
+		}
 	}
 
 	_like(){
@@ -38,15 +38,15 @@ class LikeButton extends React.Component{
 		})
 		this._updateLiked()
 	}
-	constructor(){
+	constructor(props){
 		super();
 		this._like = this._like.bind(this)
 		this._unlike = this._unlike.bind(this)
 		this._updateLiked = this._updateLiked.bind(this)
 		this.state = {
-			liked: null, 
-			likeUrl: '',
-			likeCount: null
+			liked: props.liked, 
+			likeUrl: props.likeUrl,
+			likeCount: props.likes
 		}
 	}
 
@@ -59,9 +59,9 @@ class LikeButton extends React.Component{
 	render(){
 		var button;
 		if (this.state.liked === true){ 
-			button = <button className="btn btn-default" onClick={this._unlike}>You liked this {this.props.likes}</button>
+			button = <button className="btn btn-default" onClick={this._unlike}>You liked this {this.state.likeCount}</button>
 		}else {
-			button = <button className="btn btn-primary" onClick={this._like}><i className="fa fa-thumbs-up"></i>Like This {this.props.likes}</button>
+			button = <button className="btn btn-primary" onClick={this._like}><i className="fa fa-thumbs-up"></i>Like This {this.state.likeCount}</button>
 		}
 		return(
 		  <div>

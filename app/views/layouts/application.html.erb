@@ -3,8 +3,20 @@
 <head>
   <title>SomebodyMakeThis</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet">
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <script src="http://js.pusher.com/3.0/pusher.min.js"></script>
+  <script>
+      // Enable pusher logging - don't include this in production
+      Pusher.log = function(message) {
+        if (window.console && window.console.log) {
+          window.console.log(message);
+        }
+      };
+
+      var pusher = new Pusher('9f9ed06cce5bf67a02c2', {
+        encrypted: true
+      });
+    </script>
   <%= csrf_meta_tags %>
 </head>
 <body>

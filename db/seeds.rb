@@ -6,7 +6,7 @@
 # #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 # #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-# Creative.create(name: "Bob Dole", email: "bob@4prez.gov", password: "password")
+Creative.create(name: "Bob Dole", email: "bob@4prez.gov", password: "password")
 
  ProjectIdea.create(name: "Save The World", description: "Save the effin world", creative_id: 1)
  ProjectIdea.create(name: "Buy the Milk", description: "Buy the effin Milk", creative_id: 1)

@@ -12,16 +12,19 @@ class ProjectideasController < ApplicationController
 
 	def updateliked
 		@project_idea = ProjectIdea.find_by_id(params[:id])
-		current_user.voted_up_on?(@project_idea) ? @project_idea.unliked_by(current_user) : @project_idea.liked_by(current_user)
-		emit_socket_update([@project_idea, @project_idea.votes_for.count, current_user.voted_up_on?(@project_idea)])
-		render :json => [@project_idea.id, @project_idea.votes_for.count]
-	end
+		@project = []
 
-	protected
-
-	def emit_socket_update(project)
-		project = project.to_json
-		$firehose.publish(project).to("/projects")
+		if current_user.voted_up_on?(@project_idea)
+			@project_idea.unliked_by(current_user)
+			@project.push(@project_idea, @project_idea.votes_for.count, false)
+		else
+			@project_idea.liked_by(current_user)
+			@project.push(@project_idea, @project_idea.votes_for.count, true)
+		end
+		
+		@json_project = @project.to_json
+		Pusher.trigger('ProjectIdeas', 'updateliked', {message: @json_project})
+		render :nothing => true
 	end
 
 end
