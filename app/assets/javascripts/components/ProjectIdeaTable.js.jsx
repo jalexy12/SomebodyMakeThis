@@ -13,10 +13,6 @@ class ProjectIdeaTable extends React.Component{
 		var that = this;
 	}
 
-	shouldComponentUpdate(nextProps, nextState) {
-		return true;
-	}
-	
 	getIdeas(page){
 		$.ajax({
 			url: '/projectideas',
@@ -93,6 +89,3 @@ class ProjectIdeaTable extends React.Component{
 			)
 	}
 }
-
-
-
