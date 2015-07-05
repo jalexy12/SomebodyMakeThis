@@ -21,10 +21,12 @@ class ProjectideasController < ApplicationController
 			@project_idea.liked_by(current_user)
 			@project.push(@project_idea, @project_idea.votes_for.count, true)
 		end
-		
+
 		@json_project = @project.to_json
 		Pusher.trigger('ProjectIdeas', 'updateliked', {message: @json_project})
 		render :nothing => true
 	end
+
+	
 
 end
