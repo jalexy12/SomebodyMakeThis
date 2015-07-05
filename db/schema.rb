@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150625194557) do
+ActiveRecord::Schema.define(version: 20150705035630) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,7 +28,12 @@ ActiveRecord::Schema.define(version: 20150625194557) do
     t.text     "comment_text"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+    t.integer  "creative_id"
+    t.integer  "developer_id"
   end
+
+  add_index "comments", ["creative_id"], name: "index_comments_on_creative_id", using: :btree
+  add_index "comments", ["developer_id"], name: "index_comments_on_developer_id", using: :btree
 
   create_table "creatives", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -102,5 +107,7 @@ ActiveRecord::Schema.define(version: 20150625194557) do
   add_index "votes", ["votable_id", "votable_type", "vote_scope"], name: "index_votes_on_votable_id_and_votable_type_and_vote_scope", using: :btree
   add_index "votes", ["voter_id", "voter_type", "vote_scope"], name: "index_votes_on_voter_id_and_voter_type_and_vote_scope", using: :btree
 
+  add_foreign_key "comments", "creatives"
+  add_foreign_key "comments", "developers"
   add_foreign_key "project_ideas", "creatives"
 end

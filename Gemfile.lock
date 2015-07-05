@@ -137,6 +137,9 @@ GEM
       execjs
       rails (>= 3.1)
       react-source (~> 0.13)
+    react-router-rails (0.13.3)
+      rails (>= 3.1)
+      react-rails (>= 0.12)
     react-source (0.13.3)
     redis (3.2.1)
     ref (1.0.5)
@@ -205,6 +208,7 @@ DEPENDENCIES
   pusher
   rails (= 4.2.2)
   react-rails (~> 1.0)
+  react-router-rails (~> 0.13.3)
   redis
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
