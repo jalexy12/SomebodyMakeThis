@@ -68,7 +68,9 @@ class ProjectIdeaTable extends React.Component{
 	render(){
 		var ideas = this.state.projectIdeas.map(function(idea){
 			var project = idea[0]
-			return(<ProjectIdeaComponent 
+			return(
+				<div>
+				  <ProjectIdeaComponent 
 					  key={project.id} 
 					  name={project.name} 
 					  id={project.id} 
@@ -76,6 +78,7 @@ class ProjectIdeaTable extends React.Component{
 					  creative={project.creative} 
 					  description={project.description}
 					  liked={idea[2]} />
+			    </div>
 				  )
 		});
 

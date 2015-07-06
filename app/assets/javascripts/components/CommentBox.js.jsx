@@ -1,0 +1,46 @@
+class CommentBox extends React.Component{
+
+	constructor(props){
+		super();
+		this.state = {
+			comments: props.comments || []
+		}
+	}
+
+	handleNewComment(comment){
+		var comments = this.state.comments;
+		var newComments = comments.concat([comment]);
+		this.setState({ comments: newComments });
+		
+		$.ajax({
+			url: this.props.url,
+			type: 'POST',
+			dataType: 'json',
+			data: comment,
+			success: function(comments){
+				this.setState({comments: comments});
+			}.bind(this),
+			error: function(xhr, status, err){
+				console.log(err.toString());
+			}.bind(this)
+
+		});
+	}
+
+	render(){
+		var comments = this.state.comments.map(comment => {
+			return <Comment author={comment.author} comment={comment.comment} />
+		});
+
+		return(
+		    <div>
+				<div className="row">
+				  {comments}
+				 </div>
+		      <div className="row">
+				<CommentForm onCommentSubmit={comment => this.handleNewComment(comment) } />
+			  </div>
+			</div>
+		)
+	}
+}

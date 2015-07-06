@@ -30,24 +30,32 @@ class LikeButton extends React.Component{
 		})
 		this._updateLiked()
 	}
+
+	componentWillReceiveProps(nextProps) {
+		this.setState({
+			likes: nextProps.likes
+		})
+	}
 	
 	constructor(props){
 		super();
+		console.log(props.likes)
 		this._like = this._like.bind(this)
 		this._unlike = this._unlike.bind(this)
 		this._updateLiked = this._updateLiked.bind(this)
 		this.state = {
 			liked: props.liked, 
 			likeUrl: props.likeUrl,
+			likes: props.likes
 		}
 	}
 
 	render(){
 		var button;
 		if (this.state.liked === true){ 
-			button = <button className="btn btn-default" onClick={this._unlike}>You liked this {this.props.likes}</button>
+			button = <button className="btn btn-default" onClick={this._unlike}>You liked this {this.state.likes}</button>
 		}else {
-			button = <button className="btn btn-primary" onClick={this._like}><i className="fa fa-thumbs-up"></i>Like This {this.props.likes}</button>
+			button = <button className="btn btn-primary" onClick={this._like}><i className="fa fa-thumbs-up"></i>Like This {this.state.likes}</button>
 		}
 		return(
 		  <div>
