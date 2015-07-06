@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150705035630) do
+ActiveRecord::Schema.define(version: 20150706032231) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,14 +26,16 @@ ActiveRecord::Schema.define(version: 20150705035630) do
 
   create_table "comments", force: :cascade do |t|
     t.text     "comment_text"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
     t.integer  "creative_id"
     t.integer  "developer_id"
+    t.integer  "project_idea_id"
   end
 
   add_index "comments", ["creative_id"], name: "index_comments_on_creative_id", using: :btree
   add_index "comments", ["developer_id"], name: "index_comments_on_developer_id", using: :btree
+  add_index "comments", ["project_idea_id"], name: "index_comments_on_project_idea_id", using: :btree
 
   create_table "creatives", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -109,5 +111,6 @@ ActiveRecord::Schema.define(version: 20150705035630) do
 
   add_foreign_key "comments", "creatives"
   add_foreign_key "comments", "developers"
+  add_foreign_key "comments", "project_ideas"
   add_foreign_key "project_ideas", "creatives"
 end

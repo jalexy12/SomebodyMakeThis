@@ -1,5 +1,6 @@
 class ProjectIdea < ActiveRecord::Base
   belongs_to :creative
+  has_many :comments
   acts_as_votable
  
   def self.page_count

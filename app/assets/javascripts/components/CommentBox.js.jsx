@@ -2,6 +2,7 @@ class CommentBox extends React.Component{
 
 	constructor(props){
 		super();
+		this.handleNewComment = this.handleNewComment.bind(this)
 		this.state = {
 			comments: props.comments || []
 		}
@@ -11,7 +12,7 @@ class CommentBox extends React.Component{
 		var comments = this.state.comments;
 		var newComments = comments.concat([comment]);
 		this.setState({ comments: newComments });
-		
+
 		$.ajax({
 			url: this.props.url,
 			type: 'POST',
@@ -38,7 +39,7 @@ class CommentBox extends React.Component{
 				  {comments}
 				 </div>
 		      <div className="row">
-				<CommentForm onCommentSubmit={comment => this.handleNewComment(comment) } />
+				<CommentForm onCommentSubmit={this.handleNewComment} />
 			  </div>
 			</div>
 		)

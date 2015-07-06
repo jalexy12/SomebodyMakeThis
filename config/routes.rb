@@ -2,9 +2,10 @@ Rails.application.routes.draw do
   post 'pusher/auth'
 
   resources :projectideas
-
-  post '/updatelike' => "projectideas#updateliked"
   get '/updatelike' => "projectideas#updateliked"
+  post '/updatelike' => "projectideas#updateliked"
+  post '/projectideas/:id/comments/create' => "projectideas#comment_create"
+
   devise_for :developers
   devise_for :creatives
 
