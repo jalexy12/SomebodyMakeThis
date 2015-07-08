@@ -58,11 +58,6 @@ class ProjectIdeaTable extends React.Component{
 
 	componentDidMount(){	
 		this.getIdeas(1);
-		var that = this;
-		var ProjectIdeas = pusher.subscribe('ProjectIdeas');
-		ProjectIdeas.bind('updateliked', function(data) {
-		 	that.updateState(JSON.parse(data.message))
-		});
 	}
 
 	render(){

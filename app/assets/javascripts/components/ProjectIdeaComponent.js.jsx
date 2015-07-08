@@ -8,7 +8,7 @@ class ProjectIdeaComponent extends React.Component{
 						    <h3>
 						        {this.props.name}&nbsp;{this.props.id}&nbsp;
 						      <small>
-						        <LikeButton url={"/updatelike"} liked={this.props.liked} likes={this.props.likes} id={this.props.id}/>
+						        <LikeButton liked={this.props.liked} likes={this.props.likes} id={this.props.id}/>
 						      </small>
 						    </h3>
 						  </div>

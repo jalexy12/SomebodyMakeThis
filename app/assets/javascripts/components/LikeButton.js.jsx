@@ -21,12 +21,14 @@ class LikeButton extends React.Component{
 	_like(){
 		this.setState({
 			liked: true,
+			likes: this.state.likes + 1
 		})	
 		this._updateLiked()
 	}
 	_unlike(){
 		this.setState({
 			liked: false,
+			likes: this.state.likes - 1
 		})
 		this._updateLiked()
 	}
@@ -37,9 +39,18 @@ class LikeButton extends React.Component{
 		})
 	}
 	
+	componentDidMount() {
+		var that = this;
+		var ProjectIdeas = pusher.subscribe('ProjectIdeas');
+		ProjectIdeas.bind('liked', function(data) {
+		 	that.updateState(JSON.parse(data.message))
+		});
+		ProjectIdeas.bind('updateliked', function(data) {
+		 	that.updateState(JSON.parse(data.message))
+		});
+	}
 	constructor(props){
 		super();
-		console.log(props.likes)
 		this._like = this._like.bind(this)
 		this._unlike = this._unlike.bind(this)
 		this._updateLiked = this._updateLiked.bind(this)

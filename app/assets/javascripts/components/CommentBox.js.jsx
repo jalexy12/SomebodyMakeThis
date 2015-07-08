@@ -19,7 +19,9 @@ class CommentBox extends React.Component{
 			dataType: 'json',
 			data: comment,
 			success: function(comments){
+				console.log(comments)
 				this.setState({comments: comments});
+
 			}.bind(this),
 			error: function(xhr, status, err){
 				console.log(err.toString());
@@ -30,6 +32,7 @@ class CommentBox extends React.Component{
 
 	render(){
 		var comments = this.state.comments.map(comment => {
+			console.log(comment.author)
 			return <Comment author={comment.author} comment={comment.comment} />
 		});
 

@@ -50,6 +50,7 @@ gem 'puma'
 
 gem 'pusher'
 
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
