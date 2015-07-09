@@ -1,10 +1,9 @@
 class LikeButton extends React.Component{
 
-	_updateLiked(){
-		var uri = this.props.url
-		var id = this.props.id
-		var that = this
-
+	_updateLiked(type){
+		var uri;
+		var id = this.props.id;
+		uri = type === "like" ? this.state.likeUrl : this.state.unlikeUrl
 		$.ajax({
 				url: uri,
 				type: 'post',
@@ -15,22 +14,27 @@ class LikeButton extends React.Component{
 				error: function(xhr, status, err){
 					console.error(this.props.url, status, err.toString());
 				}.bind(this)
-			});
+			});	
+	}
+
+	updateLikeCount(toWhat){
+		this.setState({
+			likes: toWhat
+		})
 	}
 
 	_like(){
 		this.setState({
 			liked: true,
-			likes: this.state.likes + 1
-		})	
-		this._updateLiked()
+		})
+		this._updateLiked("like");
+
 	}
 	_unlike(){
 		this.setState({
 			liked: false,
-			likes: this.state.likes - 1
 		})
-		this._updateLiked()
+		this._updateLiked("unlike")
 	}
 
 	componentWillReceiveProps(nextProps) {
@@ -38,17 +42,7 @@ class LikeButton extends React.Component{
 			likes: nextProps.likes
 		})
 	}
-	
-	componentDidMount() {
-		var that = this;
-		var ProjectIdeas = pusher.subscribe('ProjectIdeas');
-		ProjectIdeas.bind('liked', function(data) {
-		 	that.updateState(JSON.parse(data.message))
-		});
-		ProjectIdeas.bind('updateliked', function(data) {
-		 	that.updateState(JSON.parse(data.message))
-		});
-	}
+
 	constructor(props){
 		super();
 		this._like = this._like.bind(this)
@@ -56,8 +50,9 @@ class LikeButton extends React.Component{
 		this._updateLiked = this._updateLiked.bind(this)
 		this.state = {
 			liked: props.liked, 
-			likeUrl: props.likeUrl,
-			likes: props.likes
+			likes: props.likes,
+			likeUrl: "/projectideas/like/" + props.id,
+			unlikeUrl: "/projectideas/unlike/" + props.id
 		}
 	}
 

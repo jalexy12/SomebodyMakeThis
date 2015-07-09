@@ -1,5 +1,5 @@
 class ProjectIdeaComponent extends React.Component{
-	
+
 	render(){
 		var comment = [{author: "Bill", comment: "Hey"}]
 		return(<span>

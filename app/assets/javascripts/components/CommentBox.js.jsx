@@ -32,7 +32,6 @@ class CommentBox extends React.Component{
 
 	render(){
 		var comments = this.state.comments.map(comment => {
-			console.log(comment.author)
 			return <Comment author={comment.author} comment={comment.comment} />
 		});
 

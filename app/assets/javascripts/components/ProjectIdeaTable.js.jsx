@@ -9,8 +9,6 @@ class ProjectIdeaTable extends React.Component{
 			pageMax: null,
 			projectIdeas: []
 		}
-
-		var that = this;
 	}
 
 	getIdeas(page){
@@ -19,6 +17,7 @@ class ProjectIdeaTable extends React.Component{
 			type: "get",
 			data: {page: page},
 			success: function(data){
+				console.log(data)
 				this.setState({projectIdeas: data.projects, pageMax: data.page_count});
 			}.bind(this),
 			error: function(xhr, status, err){
@@ -45,10 +44,11 @@ class ProjectIdeaTable extends React.Component{
 			}
 	}
 
-	updateState(updatedProject){
+	updateLiked(updatedProject){
 		var newIdeas = this.state.projectIdeas.map(project => {
-			if (project[0].id === updatedProject[0].id){
-				return updatedProject
+			if (project.project.id === updatedProject.project_id){
+				project.likes = updatedProject.votes_for
+				return project
 			}else{
 				return project
 			}
@@ -58,21 +58,30 @@ class ProjectIdeaTable extends React.Component{
 
 	componentDidMount(){	
 		this.getIdeas(1);
+		var that = this;
+		var ProjectIdeas = pusher.subscribe('ProjectIdeas');
+		ProjectIdeas.bind("liked", function(data) { that.updateLiked(data.message) });
+		ProjectIdeas.bind("unliked", function(data) { that.updateLiked(data.message) });
 	}
 
 	render(){
 		var ideas = this.state.projectIdeas.map(function(idea){
-			var project = idea[0]
+
+			var project = idea.project;
+			var comments = idea.comments;
+			var liked = idea.liked;
+			var likes = idea.likes;
+
 			return(
 				<div>
 				  <ProjectIdeaComponent 
 					  key={project.id} 
 					  name={project.name} 
 					  id={project.id} 
-					  likes={idea[1]} 
+					  likes={likes} 
 					  creative={project.creative} 
 					  description={project.description}
-					  liked={idea[2]} />
+					  liked={liked} />
 			    </div>
 				  )
 		});
