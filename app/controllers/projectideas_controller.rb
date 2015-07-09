@@ -11,16 +11,14 @@ class ProjectideasController < ApplicationController
 
 	def comment_create
 		@project = ProjectIdea.find_by_id(params[:id])
-
 		if current_creative
 			@comment = @project.comments.new(creative_id: current_creative.id, comment_text: params[:text])
 		else
 			@comment = @project.comments.new(developer_id: current_developer.id, comment_text: params[:text])
 		end
-
 		@comment.save!
 		Pusher.trigger("ProjectIdeas", "new_comment", {message: {project_id: @project.id, comment: @comment}})
-		render :nothing => true
+		render json: nil, status: :ok
 	end
 
 	def like

@@ -17,12 +17,6 @@ class LikeButton extends React.Component{
 			});	
 	}
 
-	updateLikeCount(toWhat){
-		this.setState({
-			likes: toWhat
-		})
-	}
-
 	_like(){
 		this.setState({
 			liked: true,

@@ -6,7 +6,7 @@ class Comment extends React.Component{
 	  	  	 	 <span>{this.props.comment}</span>
 	  	  	</div>
 	  	  	<div className="col-sm-10">
-	  	      <img src={this.props.author.image} />
+	  	      	<img className="img-circle home_creative_pic" src="/assets/personplaceholder.jpg" />
 	  	    </div>
 	  	  </div>
 	  	  )

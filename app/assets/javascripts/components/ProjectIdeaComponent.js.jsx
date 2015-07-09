@@ -20,7 +20,7 @@ class ProjectIdeaComponent extends React.Component{
 						    <h4>Description: {this.props.description}</h4>
 						  </div>
 					</li>
-					<CommentBox url={"/projectideas/" + this.props.id + "/comments/create"} comments={comment} />
+					<CommentBox url={"/projectideas/" + this.props.id + "/comments/create"} comments={this.props.comments} />
 				</span>
 			)
 	}

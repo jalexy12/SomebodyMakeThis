@@ -12,19 +12,17 @@ class CommentBox extends React.Component{
 		var comments = this.state.comments;
 		var newComments = comments.concat([comment]);
 		this.setState({ comments: newComments });
-
+		var that = this;
 		$.ajax({
-			url: this.props.url,
+			url: that.props.url,
 			type: 'POST',
 			dataType: 'json',
 			data: comment,
 			success: function(comments){
-				console.log(comments)
-				this.setState({comments: comments});
-
+				console.log("Success")
 			}.bind(this),
 			error: function(xhr, status, err){
-				console.log(err.toString());
+				console.log(xhr.toString(), status.toString(), err.toString());
 			}.bind(this)
 
 		});
@@ -32,16 +30,17 @@ class CommentBox extends React.Component{
 
 	render(){
 		var comments = this.state.comments.map(comment => {
-			return <Comment author={comment.author} comment={comment.comment} />
+			var user = comment.creative_id === null ? comment.developer_id : comment.creative_id
+			return <Comment  comment={comment.comment_text} />
 		});
 
 		return(
 		    <div>
-				<div className="row">
-				  {comments}
-				 </div>
+			 <div className="row">
+			    <CommentForm onCommentSubmit={this.handleNewComment} />
+			 </div>
 		      <div className="row">
-				<CommentForm onCommentSubmit={this.handleNewComment} />
+				 {comments}
 			  </div>
 			</div>
 		)

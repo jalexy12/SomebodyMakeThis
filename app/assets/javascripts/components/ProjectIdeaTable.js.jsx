@@ -17,7 +17,6 @@ class ProjectIdeaTable extends React.Component{
 			type: "get",
 			data: {page: page},
 			success: function(data){
-				console.log(data)
 				this.setState({projectIdeas: data.projects, pageMax: data.page_count});
 			}.bind(this),
 			error: function(xhr, status, err){
@@ -62,6 +61,7 @@ class ProjectIdeaTable extends React.Component{
 		var ProjectIdeas = pusher.subscribe('ProjectIdeas');
 		ProjectIdeas.bind("liked", function(data) { that.updateLiked(data.message) });
 		ProjectIdeas.bind("unliked", function(data) { that.updateLiked(data.message) });
+		ProjectIdeas.bind("new_comment", function(data) { that.newComment(data.message) });
 	}
 
 	render(){
@@ -81,7 +81,9 @@ class ProjectIdeaTable extends React.Component{
 					  likes={likes} 
 					  creative={project.creative} 
 					  description={project.description}
-					  liked={liked} />
+					  liked={liked} 
+					  comments={comments}
+					  />
 			    </div>
 				  )
 		});
